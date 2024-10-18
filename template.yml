@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Serverless Spring Boot 2 API - com.weatherapi::casestudy
+Globals:
+  Api:
+    EndpointConfiguration: REGIONAL
+
+Resources:
+  CasestudyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.weatherapi.StreamLambdaHandler::handleRequest
+      Runtime: java21
+      CodeUri: .target/casestudy-0.0.1-SNAPSHOT-lambda-package.zip
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 30
+      Events:
+        ProxyResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+
+Outputs:
+  CasestudyApi:
+    Description: URL for application
+    Export:
+      Name: CasestudyApi
