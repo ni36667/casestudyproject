@@ -13,6 +13,15 @@ Parameters:
     Type: String
     Default: test
 Resources:
+  MyBucket:
+            Type: 'AWS::S3::Bucket'
+            Properties:
+              BucketName: casestudy-s3-bucket
+              PublicAccessBlockConfiguration:
+                BlockPublicAcls: false
+                BlockPublicPolicy: false
+                IgnorePublicAcls: false
+                RestrictPublicBuckets: false
   IAMRole:
     Type: AWS::IAM::Role
     Properties:
