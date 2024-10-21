@@ -13,15 +13,6 @@ Parameters:
     Type: String
     Default: test
 Resources:
-  MyBucket:
-            Type: 'AWS::S3::Bucket'
-            Properties:
-              BucketName: casestudy-s3-bucket
-              PublicAccessBlockConfiguration:
-                BlockPublicAcls: false
-                BlockPublicPolicy: false
-                IgnorePublicAcls: false
-                RestrictPublicBuckets: false
   IAMRole:
     Type: AWS::IAM::Role
     Properties:
@@ -64,7 +55,7 @@ Resources:
     Properties:
       Role: !GetAtt IAMRole.Arn
       Code:
-        S3Bucket: !Ref MyBucket
+        S3Bucket: casestudy-s3-bucket
         S3Key: casestudy-0.0.1-SNAPSHOT-lambda-package.zip
       Handler: com.weatherapi.casestudy.StreamLambdaHandler::handleRequest
       Runtime: java17
