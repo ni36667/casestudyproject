@@ -64,7 +64,7 @@ Resources:
     Properties:
       Role: !GetAtt IAMRole.Arn
       Code:
-        S3Bucket: casestudy-s3-bucket
+        S3Bucket: !Ref MyBucket
         S3Key: casestudy-0.0.1-SNAPSHOT-lambda-package.zip
       Handler: com.weatherapi.casestudy.StreamLambdaHandler::handleRequest
       Runtime: java17
